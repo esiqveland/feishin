@@ -84,6 +84,12 @@ export const AppMenu = () => {
         browser?.devtools();
     };
 
+    const handleInitOfflineStorage = () => {
+        if (currentServer) {
+            // eslint-disable-next-line promise/catch-or-return
+        }
+    };
+
     const handleCollapseSidebar = () => {
         setSideBar({ collapsed: true });
     };
@@ -193,6 +199,13 @@ export const AppMenu = () => {
                     >
                         {t('page.appMenu.openBrowserDevtools', { postProcess: 'sentenceCase' })}
                     </DropdownMenu.Item>
+                    <DropdownMenu.Item
+                        icon={<RiWindowFill />}
+                        onClick={handleInitOfflineStorage}
+                    >
+                        Enable offline storage
+                    </DropdownMenu.Item>
+                    <DropdownMenu.Divider />
                     <DropdownMenu.Item
                         icon={<RiCloseCircleLine />}
                         onClick={handleQuit}

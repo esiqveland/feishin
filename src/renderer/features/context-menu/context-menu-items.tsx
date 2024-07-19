@@ -23,6 +23,7 @@ export const SONG_CONTEXT_MENU_ITEMS: SetContextMenuItems = [
     { children: true, disabled: false, divider: true, id: 'setRating' },
     { divider: true, id: 'shareItem' },
     { divider: true, id: 'showDetails' },
+    { divider: true, id: 'download' },
 ];
 
 export const SONG_ALBUM_PAGE: SetContextMenuItems = [
