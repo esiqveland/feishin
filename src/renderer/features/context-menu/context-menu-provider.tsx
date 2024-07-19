@@ -661,6 +661,16 @@ export const ContextMenuProvider = ({ children }: ContextMenuProviderProps) => {
         });
     }, [ctx.data, t]);
 
+    const handleDownload = useCallback(() => {
+        const item = ctx.data[0];
+
+        openModal({
+            children: <ItemDetailsModal item={item} />,
+            size: 'xl',
+            title: t('page.contextMenu.showDetails', { postProcess: 'titleCase' }),
+        });
+    }, [ctx.data, t]);
+
     const handleSimilar = useCallback(async () => {
         const item = ctx.data[0];
         const songs = await controller.getSimilarSongs({
@@ -841,6 +851,13 @@ export const ContextMenuProvider = ({ children }: ContextMenuProviderProps) => {
                 leftIcon: <RiInformationFill />,
                 onClick: handleOpenItemDetails,
             },
+            download: {
+                disabled: ctx.data?.length !== 1 || !ctx.data[0].itemType,
+                id: 'download',
+                label: t('page.contextMenu.download', { postProcess: 'sentenceCase' }),
+                leftIcon: <RiInformationFill />,
+                onClick: handleDownload,
+            },
         };
     }, [
         t,
@@ -860,6 +877,7 @@ export const ContextMenuProvider = ({ children }: ContextMenuProviderProps) => {
         handleShareItem,
         server,
         handleSimilar,
+        handleDownload,
     ]);
 
     const mergedRef = useMergedRef(ref, clickOutsideRef);
